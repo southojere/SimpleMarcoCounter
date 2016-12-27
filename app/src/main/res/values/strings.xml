@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SimpleMarcoCounter</string>
+
+    <!--Carb/protein/fat Labels + editText + textView-->
+    <string name="carb_label">Carbs:</string>
+    <string name="protein_label">Protein:</string>
+    <string name="fat_label">Fat:</string>
+
+    <string name="carb_text_view">0.0</string>
+    <string name="protein_text_view">0.0</string>
+    <string name="fat_text_view">0.0</string>
+
+    <string name="carb_edit_text">Enter Carbs</string>
+    <string name="protein_edit_text">Enter protein</string>
+    <string name="fat_edit_text">Enter fat</string>
+
+    <!--Buttons-->
+
+
+    <string name="clear_all">Clear All</string>
+    <string name="enter_macros">Enter</string>
+
+
+</resources>

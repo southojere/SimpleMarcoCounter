@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.jeremy.simplemarcocounter.MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/fatEditText"
+        android:hint="@string/fat_edit_text"
+        android:inputType="numberDecimal"
+        android:layout_alignBaseline="@+id/fatLabel"
+        android:layout_alignBottom="@+id/fatLabel"
+        android:layout_alignLeft="@+id/proteinEditText"
+        android:layout_alignStart="@+id/proteinEditText" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:id="@+id/proteinEditText"
+        android:inputType="numberDecimal"
+        android:hint="@string/protein_edit_text"
+        android:layout_alignBaseline="@+id/proteinLabel"
+        android:layout_alignBottom="@+id/proteinLabel"
+        android:layout_alignLeft="@+id/carbEditText"
+        android:layout_alignStart="@+id/carbEditText" />
+
+    <TextView
+        android:text="@string/carb_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/carbTextView"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/fatEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:text="@string/fat_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fatLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/proteinTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/protein_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/proteinLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/carbTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/carbEditText"
+        android:hint ="@string/carb_edit_text"
+        android:inputType="numberDecimal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/fat_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fatTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/proteinEditText"
+        android:layout_alignRight="@+id/fatLabel"
+        android:layout_alignEnd="@+id/fatLabel"
+        android:layout_marginTop="34dp" />
+
+    <Button
+        android:text="@string/enter_macros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fatButton"
+        android:onClick="addToFat"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/carb_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/carbLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/protein_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/proteinTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/carbEditText"
+        android:layout_alignEnd="@+id/fatLabel"
+        android:layout_alignRight="@+id/fatLabel"
+        android:layout_marginTop="13dp" />
+</RelativeLayout>
