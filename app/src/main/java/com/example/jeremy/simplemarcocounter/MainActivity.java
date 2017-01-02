@@ -1,5 +1,6 @@
 package com.example.jeremy.simplemarcocounter;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,49 +33,69 @@ public class MainActivity extends AppCompatActivity {
     private TextView proteinTextView;
     private TextView fatTextView;
 
+    //Saving data
+    //KEYS
+    private String PREF_NAME;
+    private String PREF_CARB;
+    private String PREF_PROTEIN;
+    private String PREF_FAT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Iniliaztion of  SharedPrefs stuff
+        PREF_NAME = getString(R.string.preference_name);
+        PREF_CARB = getString(R.string.carb_preference_key);
+        PREF_PROTEIN = getString(R.string.protein_preference_key);
+        PREF_FAT = getString(R.string.fat_preference_key);
 
-        if (savedInstanceState != null) { //if this activity has been previously destroyed and restarted --> get old state info
-            carbTotal = savedInstanceState.getDouble(CARB_TOTAL);
-            proteinTotal = savedInstanceState.getDouble(PROTEIN_TOTAL);
-            fatTotal = savedInstanceState.getDouble(FAT_TOTAL);
+        SharedPreferences savedPref = getSharedPreferences(PREF_NAME, 0);
 
-            //Updating TextViews
+        //initializes them with saved data from file
+        initializeTextViews(savedPref.getFloat(PREF_PROTEIN, 0), savedPref.getFloat(PREF_CARB, 0), savedPref.getFloat(PREF_FAT, 0));
 
-            carbTextView = (TextView) findViewById(R.id.carbTextView);
-            proteinTextView = (TextView) findViewById(R.id.proteinTextView);
-            fatTextView = (TextView) findViewById(R.id.fatTextView);
 
-            carbTextView.setText(Double.toString(carbTotal));
-            proteinTextView.setText(Double.toString(proteinTotal));
-            fatTextView.setText(Double.toString(fatTotal));
-
-        } else {
-            //just started
-            carbTotal = 0.0;
-            proteinTotal = 0.0;
-            fatTotal = 0.0;
-
-            carbTextView = (TextView) findViewById(R.id.carbTextView);
-            proteinTextView = (TextView) findViewById(R.id.proteinTextView);
-            fatTextView = (TextView) findViewById(R.id.fatTextView);
-
-            carbTextView.setText(Double.toString(0));
-            proteinTextView.setText(Double.toString(0));
-            fatTextView.setText(Double.toString(0));
-
-        }
         // Initialize ET
         carbET = (EditText) findViewById(R.id.carbEditText);
         proteinET = (EditText) findViewById(R.id.proteinEditText);
         fatET = (EditText) findViewById(R.id.fatEditText);
 
+
     }
 
+    /**
+     * Called on onCreate()
+     * initializes the TextViews based on if there was a previously destroyed instance else the app was just started
+     */
+    public void initializeTextViews(double p, double c, double f) {
+        carbTextView = (TextView) findViewById(R.id.carbTextView);
+        proteinTextView = (TextView) findViewById(R.id.proteinTextView);
+        fatTextView = (TextView) findViewById(R.id.fatTextView);
+
+        carbTotal =  c;
+        proteinTotal =  p;
+        fatTotal =  f;
+
+        //Updating TextViews
+        carbTextView.setText(Double.toString(carbTotal));
+        proteinTextView.setText(Double.toString(proteinTotal));
+        fatTextView.setText(Double.toString(fatTotal));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences savedPref = getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = savedPref.edit();
+        editor.putFloat(PREF_CARB, (float) carbTotal);
+        editor.putFloat(PREF_PROTEIN, (float) proteinTotal);
+        editor.putFloat(PREF_FAT, (float) fatTotal);
+        // Commit the edits!
+        editor.apply();
+
+    }
 
     //Saving Additional state info that the user would expect to be present when they navigate back to your activity.
     //Make sure to override super.
@@ -122,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             fatET.setText("");
         }
 
-          carbTextView.setText(Double.toString(carbTotal));
+        carbTextView.setText(Double.toString(carbTotal));
 
     }
 

@@ -20,5 +20,11 @@
     <string name="clear_all">Clear All</string>
     <string name="enter_macros">Enter</string>
 
+    <!--Keys for SharedPreferences-->
+
+    <string name="preference_name">com.example.jeremy.simplemarcocounter.name</string>
+    <string name="carb_preference_key">com.example.jeremy.simplemarcocounter.carbPreferneceKey</string>
+    <string name="protein_preference_key">com.example.jeremy.simplemarcocounter.proteinPreferneceKey</string>
+    <string name="fat_preference_key">com.example.jeremy.simplemarcocounter.fatPreferneceKey</string>
 
 </resources>
