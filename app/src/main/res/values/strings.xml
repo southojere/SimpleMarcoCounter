@@ -19,6 +19,7 @@
 
     <string name="clear_all">Clear All</string>
     <string name="enter_macros">Enter</string>
+    <string name="new_activity">New activity</string>
 
     <!--Keys for SharedPreferences-->
 

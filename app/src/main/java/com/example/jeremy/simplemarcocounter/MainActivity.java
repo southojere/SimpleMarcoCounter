@@ -1,5 +1,7 @@
 package com.example.jeremy.simplemarcocounter;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,17 +13,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+//TODO Might be cool to implement a dataBase to store/keep track of all the Macro intry
 //http://www.android-examples.com/use-addtextchangedlistener-in-edittext-android/
 public class MainActivity extends AppCompatActivity {
-    //Save data if exited, keys
-    private String CARB_TOTAL = "carb_total";
-    private static final String PROTEIN_TOTAL = "protein_total";
-    private static final String FAT_TOTAL = "fat_total";
 
     //Data&Values of said Keys
-    private double carbTotal;
-    private double proteinTotal;
-    private double fatTotal;
+//    private double carbTotal;
+//    private double proteinTotal;
+//    private double fatTotal;
+    Macros totalMacros;
 
     //Defining views --> save & get values into those views
     private EditText carbET;
@@ -40,10 +40,13 @@ public class MainActivity extends AppCompatActivity {
     private String PREF_PROTEIN;
     private String PREF_FAT;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        totalMacros = new Macros(0, 0, 0);
 
         //Iniliaztion of  SharedPrefs stuff
         PREF_NAME = getString(R.string.preference_name);
@@ -74,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
         proteinTextView = (TextView) findViewById(R.id.proteinTextView);
         fatTextView = (TextView) findViewById(R.id.fatTextView);
 
-        carbTotal =  c;
-        proteinTotal =  p;
-        fatTotal =  f;
+        totalMacros.setCarbs(c);
+        totalMacros.setProtein(p);
+        totalMacros.setFat(f);
 
         //Updating TextViews
-        carbTextView.setText(Double.toString(carbTotal));
-        proteinTextView.setText(Double.toString(proteinTotal));
-        fatTextView.setText(Double.toString(fatTotal));
+        carbTextView.setText(Double.toString(totalMacros.getCarbs()));
+        proteinTextView.setText(Double.toString(totalMacros.getProtein()));
+        fatTextView.setText(Double.toString(totalMacros.getFat()));
     }
 
     @Override
@@ -89,61 +92,48 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         SharedPreferences savedPref = getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = savedPref.edit();
-        editor.putFloat(PREF_CARB, (float) carbTotal);
-        editor.putFloat(PREF_PROTEIN, (float) proteinTotal);
-        editor.putFloat(PREF_FAT, (float) fatTotal);
+        editor.putFloat(PREF_CARB, (float) totalMacros.getCarbs());
+        editor.putFloat(PREF_PROTEIN, (float) totalMacros.getProtein());
+        editor.putFloat(PREF_FAT, (float) totalMacros.getFat());
         // Commit the edits!
         editor.apply();
 
     }
 
-    //Saving Additional state info that the user would expect to be present when they navigate back to your activity.
-    //Make sure to override super.
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putDouble(CARB_TOTAL, carbTotal);
-        savedInstanceState.putDouble(PROTEIN_TOTAL, proteinTotal);
-        savedInstanceState.putDouble(FAT_TOTAL, fatTotal);
-
-
-        //always call on super class
-        super.onSaveInstanceState(savedInstanceState);
-
-    }
-
     public void clearAll(View view) {
+        totalMacros.setAll(0);
 
-        carbTotal = fatTotal = proteinTotal = 0;
-
-        //Re-set/get which fixes some error
+        //Re-initializing/which fixes some error
         carbTextView = (TextView) findViewById(R.id.carbTextView);
         proteinTextView = (TextView) findViewById(R.id.proteinTextView);
         fatTextView = (TextView) findViewById(R.id.fatTextView);
 
         //updating
-        carbTextView.setText(Double.toString(carbTotal));
-        proteinTextView.setText(Double.toString(proteinTotal));
-        fatTextView.setText(Double.toString(fatTotal));
+        carbTextView.setText(Double.toString(0));
+        proteinTextView.setText(Double.toString(0));
+        fatTextView.setText(Double.toString(0));
     }
 
     public void addMarcos(View view) {
-        String fatValue = fatET.getText().toString();
-
+        //adding Protein and carbs
         addToCarb();
         addToProtein();
+        addToFat();
+    }
+
+    public void addToFat() {
+        String fatValue = fatET.getText().toString();
+
         if (!fatValue.equals("")) {
             Double finalValue = Double.parseDouble(fatValue);
-            fatTotal += finalValue;
+            totalMacros.addFat(finalValue);
 
             //displays new total
             TextView textView = (TextView) findViewById(R.id.fatTextView);
-            textView.setText(Double.toString(fatTotal));
+            textView.setText(Double.toString(totalMacros.getFat()));
 
             fatET.setText("");
         }
-
-        carbTextView.setText(Double.toString(carbTotal));
 
     }
 
@@ -152,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (!pValue.equals("")) {
             Double finalValue = Double.parseDouble(pValue);
-            proteinTotal += finalValue;
+            totalMacros.addProtein(finalValue);
 
             //Display updated on TextView
             TextView textView = (TextView) findViewById(R.id.proteinTextView);
-            textView.setText(Double.toString(proteinTotal));
+            textView.setText(Double.toString(totalMacros.getProtein()));
 
             proteinET.setText("");
         }
@@ -167,13 +157,23 @@ public class MainActivity extends AppCompatActivity {
 
         if (!cValue.equals("")) {
             Double finalValue = Double.parseDouble(cValue);
-            carbTotal += finalValue;
+            totalMacros.addCarbs(finalValue);
 
             TextView textView = (TextView) findViewById(R.id.carbTextView);
-            textView.setText(Double.toString(carbTotal));
+            textView.setText(Double.toString(totalMacros.getCarbs()));
 
             carbET.setText("");
         }
     }
+
+//    OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(MainActivity.this){
+//        @Override
+//        public void onSwipeLeft(){
+//            //fatET.setText("101");
+//
+//        }
+//
+//    };
+
 
 }
