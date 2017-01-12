@@ -4,12 +4,18 @@ public class Macros {
     private double carbs;
     private double protein;
     private double fat;
-
+    private String name;
     //private int id;
     public Macros(double c, double p, double f) {
         carbs = c;
         protein = p;
         fat = f;
+    }
+    public Macros(double c,double p,double f, String nam){
+        carbs = c;
+        protein = p;
+        fat = f;
+        name = nam;
     }
 
     public void setCarbs(double carbs) {
@@ -35,6 +41,9 @@ public class Macros {
 
     public double getFat() {
         return fat;
+    }
+    public String getName(){
+        return name;
     }
 
     public double getProtein() {

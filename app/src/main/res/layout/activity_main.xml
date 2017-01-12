@@ -12,17 +12,6 @@
 
 
     <TextView
-        android:text="@string/fat_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fatLabel"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:layout_alignBaseline="@+id/fatTextView"
-        android:layout_alignBottom="@+id/fatTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="@string/fat_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,17 +34,6 @@
         android:layout_alignBottom="@+id/proteinLabel"
         android:layout_alignLeft="@+id/carbTextView"
         android:layout_alignStart="@+id/carbTextView" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="5"
-        android:id="@+id/carbEditText"
-        android:hint ="@string/carb_edit_text"
-        android:inputType="numberDecimal"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/proteinEditText"
-        android:layout_alignStart="@+id/proteinEditText" />
 
     <TextView
         android:text="@string/protein_label"
@@ -137,5 +115,39 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/carbEditText"
+        android:hint ="@string/carb_edit_text"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/proteinEditText"
+        android:layout_alignStart="@+id/proteinEditText" />
+
+    <TextView
+        android:text="@string/fat_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fatLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignBaseline="@+id/fatTextView"
+        android:layout_alignBottom="@+id/fatTextView"/>
+
+    <Button
+        android:text="@string/food_list_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:id="@+id/foodListButton"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:onClick="toFoodList"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

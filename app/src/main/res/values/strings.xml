@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimpleMarcoCounter</string>
+    <string name="app_name">Marco Counter</string>
 
     <!--Carb/protein/fat Labels + editText + textView-->
     <string name="carb_label">Carbs:</string>
@@ -20,6 +20,7 @@
     <string name="clear_all">Clear All</string>
     <string name="enter_macros">Enter</string>
     <string name="new_activity">New activity</string>
+    <string name="food_list_button">➨</string>
 
     <!--Keys for SharedPreferences-->
 
@@ -27,5 +28,18 @@
     <string name="carb_preference_key">com.example.jeremy.simplemarcocounter.carbPreferneceKey</string>
     <string name="protein_preference_key">com.example.jeremy.simplemarcocounter.proteinPreferneceKey</string>
     <string name="fat_preference_key">com.example.jeremy.simplemarcocounter.fatPreferneceKey</string>
+    <!--A2-->
+    <string name="preference_name_A2">com.example.jeremy.simplemarcocounter.nameA2</string>
+    <string name="food_list_key">com.example.jeremy.simplemarcocounter.foodListPreferneceKey</string>
+
+
+    <!--Activity Food List Strings-->
+    <string name="add_food_title_text_view">Food List</string>
+    <string name="name_tag_text_view">Name:</string>
+    <string name="hint_name_edit_text">Food Name</string>
+    <string name="hint_carb_edit_text">Enter Carbs</string>
+    <string name="hint_protein_edit_text">Enter Protein</string>
+    <string name="hint_fat_edit_text">Enter Fat</string>
+    <string name="submit_button">Sumbit</string>
 
 </resources>

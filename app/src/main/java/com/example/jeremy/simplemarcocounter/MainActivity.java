@@ -1,8 +1,11 @@
 package com.example.jeremy.simplemarcocounter;
 
-import android.app.Activity;
+import android.app.*;
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -17,10 +21,6 @@ import org.w3c.dom.Text;
 //http://www.android-examples.com/use-addtextchangedlistener-in-edittext-android/
 public class MainActivity extends AppCompatActivity {
 
-    //Data&Values of said Keys
-//    private double carbTotal;
-//    private double proteinTotal;
-//    private double fatTotal;
     Macros totalMacros;
 
     //Defining views --> save & get values into those views
@@ -64,13 +64,12 @@ public class MainActivity extends AppCompatActivity {
         carbET = (EditText) findViewById(R.id.carbEditText);
         proteinET = (EditText) findViewById(R.id.proteinEditText);
         fatET = (EditText) findViewById(R.id.fatEditText);
-
-
     }
 
     /**
      * Called on onCreate()
      * initializes the TextViews based on if there was a previously destroyed instance else the app was just started
+     *
      */
     public void initializeTextViews(double p, double c, double f) {
         carbTextView = (TextView) findViewById(R.id.carbTextView);
@@ -112,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
         carbTextView.setText(Double.toString(0));
         proteinTextView.setText(Double.toString(0));
         fatTextView.setText(Double.toString(0));
+
+
+        Context context = getApplicationContext();
+        Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show();
     }
 
     public void addMarcos(View view) {
@@ -119,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
         addToCarb();
         addToProtein();
         addToFat();
+
+        //lil msg
+        Context context = getApplicationContext();
+        Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
     }
 
     public void addToFat() {
@@ -166,14 +173,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(MainActivity.this){
-//        @Override
-//        public void onSwipeLeft(){
-//            //fatET.setText("101");
-//
-//        }
-//
-//    };
+    public void toFoodList(View view){
+        Intent intent = new Intent(this,foodListActivity.class);
+        startActivity(intent);
+    }
 
 
 }
