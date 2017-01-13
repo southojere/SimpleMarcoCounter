@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -53,6 +54,8 @@ public class foodListActivity extends AppCompatActivity {
         proteinET = (EditText) findViewById(R.id.proteinEditTextA2);
         fatET = (EditText) findViewById(R.id.fatEditTextA2);
         listView = (ListView) findViewById(R.id.foodListListView);
+
+       // listView.setOnItem
 
     }
 
@@ -119,5 +122,11 @@ public class foodListActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = savedPref.edit();
         editor.putStringSet(FOODLIST_KEY, saveSet);
         editor.apply();
+    }
+
+    public void clearFoodList(View view){
+        foodn.clear();
+        updateListView();
+
     }
 }

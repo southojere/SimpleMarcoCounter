@@ -41,5 +41,5 @@
     <string name="hint_protein_edit_text">Enter Protein</string>
     <string name="hint_fat_edit_text">Enter Fat</string>
     <string name="submit_button">Sumbit</string>
-
+    <string name="clear_button">Clear</string>
 </resources>

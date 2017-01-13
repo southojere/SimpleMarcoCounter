@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_food_list"
     android:layout_width="match_parent"
@@ -11,61 +11,99 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.jeremy.simplemarcocounter.foodListActivity">
 
-    <TextView
-        android:text="@string/add_food_title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:text="@string/name_tag_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/FoodNameEditText"
-        android:hint="@string/hint_name_edit_text" />
 
     <EditText
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:id="@+id/carbEditTextA2"
         android:hint="@string/hint_carb_edit_text"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/FoodNameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:id="@+id/proteinEditTextA2"
         android:hint="@string/hint_protein_edit_text"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/carbEditTextA2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/carbEditTextA2"
+        android:layout_alignEnd="@+id/carbEditTextA2" />
+
+    <TextView
+        android:text="@string/add_food_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FoodNameEditText"
+        android:hint="@string/hint_name_edit_text"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:id="@+id/fatEditTextA2"
         android:hint="@string/hint_fat_edit_text"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/proteinEditTextA2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <TextView
+        android:text="@string/name_tag_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clearList"
+        android:onClick="clearFoodList"
+        android:layout_alignBaseline="@+id/sumbitFoodA2"
+        android:layout_alignBottom="@+id/sumbitFoodA2"
+        android:layout_toRightOf="@+id/sumbitFoodA2"
+        android:layout_toEndOf="@+id/sumbitFoodA2" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/foodListListView"
+        android:layout_below="@+id/fatEditTextA2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
 
     <Button
         android:text="@string/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sumbitFoodA2"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="16dp"
         android:onClick="onSubmit"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/FoodNameEditText"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/foodListListView" />
-
-</LinearLayout>
+</RelativeLayout>
