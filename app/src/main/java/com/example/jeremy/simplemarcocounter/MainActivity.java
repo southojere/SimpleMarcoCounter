@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         //initializes them with saved data from file
         initializeTextViews(savedPref.getFloat(PREF_PROTEIN, 0), savedPref.getFloat(PREF_CARB, 0), savedPref.getFloat(PREF_FAT, 0));
 
+        /**
+         * Checks if this Activity was started by an Intent if so will check Extras to update Edit Texts appropriately
+         * */
+        receivingDataFromFoodListActivity();
 
         // Initialize ET
         carbET = (EditText) findViewById(R.id.carbEditText);
@@ -79,8 +83,22 @@ public class MainActivity extends AppCompatActivity {
         totalMacros.setCarbs(c);
         totalMacros.setProtein(p);
         totalMacros.setFat(f);
+        updateEditText();
 
-        //Updating TextViews
+    }
+
+    public void receivingDataFromFoodListActivity(){
+        //c-arb p-rotein f-at
+        double c = getIntent().getDoubleExtra("CARB_ADDED_FROM_FOOD_LIST_CLASS",totalMacros.getCarbs());
+        double p = getIntent().getDoubleExtra("PROTEIN_ADDED_FROM_FOOD_LIST_CLASS",totalMacros.getProtein());
+        double f = getIntent().getDoubleExtra("FAT_ADDED_FROM_FOOD_LIST_CLASS",totalMacros.getFat());
+        totalMacros.addCarbs(c);
+        totalMacros.addProtein(p);
+        totalMacros.addFat(f);
+
+        updateEditText();
+    }
+    public void updateEditText(){
         carbTextView.setText(Double.toString(totalMacros.getCarbs()));
         proteinTextView.setText(Double.toString(totalMacros.getProtein()));
         fatTextView.setText(Double.toString(totalMacros.getFat()));
@@ -177,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,foodListActivity.class);
         startActivity(intent);
     }
-
+    public void printToast(String text) {
+        Context context = getApplicationContext();
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
 
 }
